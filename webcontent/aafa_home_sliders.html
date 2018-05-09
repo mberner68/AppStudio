@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+ <head>
+<title>AAFA Sliders</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  
+ </head>
+ <body>
+ <form action="aafa_slider.php" method="get">
+ 	
+ 	
+ </form>
+ <div ng-app="sliderApp" ng-controller="sliderCtrl">
+ <h3>{{x.sliderLocation}</h3>
+  <table>
+  
+  <!-- Display records -->
+  <tr ng-repeat="x in sliders">
+  <td>{{x.slider}}</td>
+  <td><img src="{{x.location}}/{{x.slider}}" width="150" alt="{{x.slider}}"</td>
+<td>URL: {{x.Url}}</td><td>Live: {{x.live}}</td>
+ </tr>
+ 
+  </table>
+  </div>
+ <script>
+var app = angular.module('sliderApp', []);
+
+ app.controller('sliderCtrl', function ($scope, $http) {
+ $http.get ("get_sliders.php").then(function (response) {$scope.sliders = response.data;});
+});
+
+
+</script>
+ </body>
+ 
+</html>
